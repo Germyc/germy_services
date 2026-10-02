@@ -1,2 +1,4 @@
-documentos/
+# Material de trabajo no versionado
+documentos/*.md
+!documentos/referencia_de_desarrollo.md
 .DS_Store
