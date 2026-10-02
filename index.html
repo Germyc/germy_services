@@ -3,87 +3,573 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mi sitio web</title>
+  <title>Germy Services — Páginas web para comercios de Burzaco y Zona Sur</title>
+  <meta name="description" content="Ayudo a comercios de Burzaco y Zona Sur a convertir búsquedas y redes sociales en consultas por WhatsApp, con webs rápidas, claras y pensadas para el celular." />
+  <meta name="theme-color" content="#0f172a" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f172a'/%3E%3Ctext x='32' y='44' font-family='Arial,Helvetica,sans-serif' font-size='36' font-weight='bold' fill='%232563eb' text-anchor='middle'%3EG%3C/text%3E%3C/svg%3E" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_AR" />
+  <meta property="og:title" content="Germy Services — Páginas web para comercios de Burzaco" />
+  <meta property="og:description" content="Web rápida, clara y lista para que el cliente encuentre lo importante y consulte por WhatsApp." />
+  <meta property="og:url" content="https://germyc.github.io/germy_services/" />
+  <meta name="twitter:card" content="summary_large_image" />
+
   <style>
+    :root {
+      --ink: #0f172a;
+      --ink-soft: #334155;
+      --muted: #64748b;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --line: #e2e8f0;
+      --brand: #2563eb;
+      --brand-dark: #1d4ed8;
+      --ok: #059669;
+      --radius: 16px;
+      --shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+      --wrap: 1080px;
+    }
+
     * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      color: #1f2937;
-      background: #f8fafc;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--ink);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
     }
 
-    header {
-      padding: 72px 24px;
-      text-align: center;
-      color: white;
-      background: linear-gradient(135deg, #0f172a, #2563eb);
-    }
+    h1, h2, h3 { line-height: 1.2; margin: 0 0 .6em; }
+    h1 { font-size: clamp(2rem, 4.5vw, 3rem); letter-spacing: -0.02em; }
+    h2 { font-size: clamp(1.5rem, 3vw, 2rem); letter-spacing: -0.01em; }
+    h3 { font-size: 1.1rem; }
+    p { margin: 0 0 1em; }
+    ul { margin: 0 0 1em; padding-left: 1.2em; }
+    li { margin-bottom: .35em; }
+    a { color: var(--brand); }
 
-    main {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 48px 24px;
-    }
+    .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
 
-    section {
-      margin-bottom: 42px;
-      padding: 28px;
-      border-radius: 16px;
-      background: white;
-      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+    .skip {
+      position: absolute; left: -9999px; top: 0;
+      background: #fff; color: var(--ink); padding: 10px 16px; z-index: 100;
     }
+    .skip:focus { left: 8px; top: 8px; }
 
-    .boton {
+    /* Nav */
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(15, 23, 42, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .nav .wrap {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; min-height: 60px;
+    }
+    .brand { color: #fff; text-decoration: none; font-weight: 800; letter-spacing: -0.01em; }
+    .brand span { color: #60a5fa; }
+    .nav-links { display: flex; gap: 20px; flex-wrap: wrap; }
+    .nav-links a {
+      color: #cbd5e1; text-decoration: none; font-size: .95rem;
+    }
+    .nav-links a:hover, .nav-links a:focus-visible { color: #fff; }
+    .nav .cta { display: none; }
+
+    /* Hero */
+    header.hero {
+      color: #fff;
+      background:
+        radial-gradient(1000px 400px at 15% -10%, rgba(37, 99, 235, .55), transparent 60%),
+        linear-gradient(135deg, #0f172a, #1e3a8a 70%, #2563eb);
+      padding: clamp(56px, 9vw, 104px) 0;
+    }
+    .hero .eyebrow {
       display: inline-block;
-      padding: 12px 20px;
-      border-radius: 8px;
-      background: #2563eb;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
+      font-size: .8rem; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: #93c5fd;
+      border: 1px solid rgba(147, 197, 253, .4);
+      padding: 6px 12px; border-radius: 999px; margin-bottom: 20px;
     }
+    .hero p.lead {
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      color: #dbeafe; max-width: 46ch;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .hero-meta {
+      display: flex; flex-wrap: wrap; gap: 8px 24px;
+      margin-top: 32px; color: #bfdbfe; font-size: .92rem;
+    }
+    .hero-meta strong { color: #fff; }
+
+    /* Buttons */
+    .btn {
+      display: inline-block; padding: 13px 22px; border-radius: 10px;
+      font-weight: 700; text-decoration: none; font-size: 1rem;
+      border: 1px solid transparent; cursor: pointer;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+    }
+    .btn:hover { transform: translateY(-1px); }
+    .btn-primary { background: var(--brand); color: #fff; }
+    .btn-primary:hover, .btn-primary:focus-visible { background: var(--brand-dark); }
+    .btn-ghost { background: transparent; color: #fff; border-color: rgba(255, 255, 255, .45); }
+    .btn-ghost:hover, .btn-ghost:focus-visible { border-color: #fff; background: rgba(255, 255, 255, .08); }
+    .btn-outline { background: #fff; color: var(--brand); border-color: var(--line); }
+    .btn-outline:hover, .btn-outline:focus-visible { border-color: var(--brand); }
+
+    a:focus-visible, button:focus-visible {
+      outline: 3px solid #93c5fd; outline-offset: 2px; border-radius: 6px;
+    }
+
+    /* Sections */
+    main section {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: clamp(24px, 4vw, 40px);
+      margin-bottom: 24px;
+    }
+    main { max-width: var(--wrap); margin: 0 auto; padding: 48px 24px; }
+    .section-tag {
+      font-size: .78rem; font-weight: 700; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--brand); margin-bottom: 8px;
+    }
+    .section-intro { color: var(--ink-soft); max-width: 62ch; }
+
+    .grid { display: grid; gap: 20px; }
+    .grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+    .grid-4 { grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+
+    .card {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 22px;
+    }
+    .card h3 { margin-bottom: .35em; }
+    .card .for { color: var(--muted); font-size: .9rem; margin-bottom: .8em; }
+    .card ul { font-size: .95rem; color: var(--ink-soft); }
+    .card .pay {
+      display: inline-block; margin-top: 6px;
+      font-size: .82rem; font-weight: 700; color: var(--ok);
+      background: #ecfdf5; border: 1px solid #a7f3d0;
+      padding: 4px 10px; border-radius: 999px;
+    }
+
+    .checklist { list-style: none; padding: 0; margin: 0; }
+    .checklist li {
+      position: relative; padding-left: 30px; margin-bottom: .7em;
+      color: var(--ink-soft);
+    }
+    .checklist li::before {
+      content: ""; position: absolute; left: 0; top: .35em;
+      width: 18px; height: 18px; border-radius: 50%;
+      background: #ecfdf5 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23059669' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center/12px no-repeat;
+      border: 1px solid #a7f3d0;
+    }
+    .checklist.no li::before {
+      background: #fef2f2 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23dc2626' stroke-width='4' stroke-linecap='round'%3E%3Cline x1='18' y1='6' x2='6' y2='18'/%3E%3Cline x1='6' y1='6' x2='18' y2='18'/%3E%3C/svg%3E") center/11px no-repeat;
+      border-color: #fecaca;
+    }
+
+    /* Steps */
+    .steps { counter-reset: step; display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); padding: 0; margin: 24px 0 0; list-style: none; }
+    .steps li {
+      counter-increment: step;
+      background: var(--bg); border: 1px solid var(--line);
+      border-radius: 12px; padding: 20px; position: relative;
+    }
+    .steps li::before {
+      content: counter(step);
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 30px; height: 30px; margin-bottom: 12px;
+      border-radius: 50%; background: var(--brand); color: #fff;
+      font-weight: 800; font-size: .9rem;
+    }
+    .steps h3 { font-size: 1rem; margin-bottom: .3em; }
+    .steps p { font-size: .93rem; color: var(--ink-soft); margin: 0; }
+
+    /* Demo tiles */
+    .demo {
+      border: 1px dashed #cbd5e1; border-radius: 12px;
+      padding: 22px; background: linear-gradient(180deg, #fff, var(--bg));
+    }
+    .demo .label {
+      font-size: .75rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--muted);
+    }
+    .demo h3 { margin: 6px 0 8px; }
+    .demo p { font-size: .93rem; color: var(--ink-soft); margin-bottom: 12px; }
+
+    /* FAQ */
+    details {
+      border-top: 1px solid var(--line);
+      padding: 14px 0;
+    }
+    details:last-of-type { border-bottom: 1px solid var(--line); }
+    summary {
+      cursor: pointer; font-weight: 700; list-style: none;
+      display: flex; justify-content: space-between; gap: 16px; align-items: center;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: "+"; color: var(--brand); font-size: 1.4rem; line-height: 1; }
+    details[open] summary::after { content: "–"; }
+    details p { margin: 10px 0 0; color: var(--ink-soft); }
+
+    /* Contact */
+    #contacto { background: linear-gradient(135deg, #0f172a, #1e3a8a); color: #fff; border: none; }
+    #contacto h2, #contacto h3 { color: #fff; }
+    #contacto p, #contacto li { color: #dbeafe; }
+    #contacto .contact-grid { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); align-items: start; }
+    #contacto .note { font-size: .9rem; color: #bfdbfe; }
+    #contacto .btn-outline { background: transparent; color: #fff; border-color: rgba(255,255,255,.4); }
+    #contacto .btn-outline:hover { border-color: #fff; }
 
     footer {
-      padding: 24px;
-      text-align: center;
-      color: #64748b;
+      padding: 28px 24px; text-align: center;
+      color: var(--muted); font-size: .9rem;
+      background: var(--card); border-top: 1px solid var(--line);
+    }
+    footer a { color: var(--muted); }
+
+    @media (max-width: 720px) {
+      .nav-links { display: none; }
+      .nav .cta { display: inline-block; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .btn:hover { transform: none; }
     }
   </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Germy Services",
+    "description": "Páginas web, catálogos, turnos y tiendas online para comercios de Burzaco y Zona Sur.",
+    "founder": "Germán Cortez",
+    "areaServed": ["Burzaco", "Adrogué", "Banfield", "Lomas de Zamora", "Zona Sur, Buenos Aires"],
+    "telephone": "+54 9 11 6107-9845",
+    "url": "https://germyc.github.io/germy_services/",
+    "priceRange": "$$"
+  }
+  </script>
 </head>
 <body>
-  <header>
-    <h1>Mi nombre o negocio</h1>
-    <p>Soluciones web y desarrollo de software</p>
-    <a class="boton" href="#contacto">Contactarme</a>
+  <a class="skip" href="#contenido">Saltar al contenido</a>
+
+  <nav class="nav" aria-label="Principal">
+    <div class="wrap">
+      <a class="brand" href="#">Germy<span>Services</span></a>
+      <div class="nav-links">
+        <a href="#servicios">Servicios</a>
+        <a href="#paquetes">Paquetes</a>
+        <a href="#proceso">Cómo trabajo</a>
+        <a href="#demos">Demos</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+      <a class="btn btn-primary cta" href="https://wa.me/5491161079845?text=Hola%20Germ%C3%A1n%2C%20vi%20tu%20sitio%20y%20quiero%20consultar%20por%20una%20web%20para%20mi%20negocio" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="wrap">
+      <span class="eyebrow">Burzaco · Zona Sur</span>
+      <h1>Páginas web que convierten búsquedas y redes en consultas por WhatsApp</h1>
+      <p class="lead">
+        Ayudo a comercios de Burzaco a que los encuentren en Google, vean horarios y
+        ubicación sin escribirte, y consulten directo por WhatsApp. Rápido, claro y
+        pensado para el celular.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://wa.me/5491161079845?text=Hola%20Germ%C3%A1n%2C%20vi%20tu%20sitio%20y%20quiero%20consultar%20por%20una%20web%20para%20mi%20negocio" target="_blank" rel="noopener">Pedir una idea sin compromiso</a>
+        <a class="btn btn-ghost" href="#paquetes">Ver paquetes y precios</a>
+      </div>
+      <div class="hero-meta">
+        <span><strong>Respuesta rápida</strong> por WhatsApp</span>
+        <span><strong>Entrega en días</strong>, no en meses</span>
+        <span><strong>Dominio y hosting</strong> a tu nombre</span>
+      </div>
+    </div>
   </header>
 
-  <main>
-    <section>
-      <h2>Qué hago</h2>
-      <p>Desarrollo páginas web, sistemas, automatizaciones e integraciones para negocios y profesionales.</p>
+  <main id="contenido">
+    <section id="servicios">
+      <p class="section-tag">Qué hago</p>
+      <h2>No vendo “una web”: resuelvo que no te encuentren</h2>
+      <p class="section-intro">
+        Si alguien busca “electricista en Burzaco” a las 22 h y no encuentra tus horarios,
+        tu ubicación ni una forma clara de contactarte, esa consulta se va a la competencia.
+        Trabajo con comercios, oficios y profesionales de la zona para que eso no pase.
+      </p>
+      <div class="grid grid-4" style="margin-top:24px">
+        <div class="card">
+          <h3>Te encuentran en Google</h3>
+          <p class="for">SEO local desde el día uno</p>
+          <ul>
+            <li>Sitio indexado y con datos de contacto claros</li>
+            <li>Ficha de Google con enlace a la web</li>
+            <li>Contenido pensado para búsquedas de la zona</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Consultan por WhatsApp</h3>
+          <p class="for">Un solo paso, sin formularios eternos</p>
+          <ul>
+            <li>Botón de WhatsApp en cada pantalla</li>
+            <li>El mensaje llega con el producto o servicio ya nombrado</li>
+            <li>Menos fricción = más consultas</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Se ve bien en el celular</h3>
+          <p class="for">Donde te busca la mayoría</p>
+          <ul>
+            <li>Carga rápida, incluso con mala señal</li>
+            <li>Horarios, precios y ubicación a un toque</li>
+            <li>Texto grande y botones cómodos</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>No dependés solo de Instagram</h3>
+          <p class="for">Activo propio que controlás vos</p>
+          <ul>
+            <li>Tus datos no quedan atados a una red social</li>
+            <li>Dominio y cuentas a tu nombre</li>
+            <li>Algo que sigue vendiendo cuando no publicás</li>
+          </ul>
+        </div>
+      </div>
     </section>
 
-    <section>
-      <h2>Servicios</h2>
-      <ul>
-        <li>Páginas web y landing pages</li>
-        <li>Sistemas a medida</li>
-        <li>Integraciones de pagos</li>
-        <li>Automatización de procesos</li>
-      </ul>
+    <section id="paquetes">
+      <p class="section-tag">Paquetes</p>
+      <h2>Propuestas cerradas, fáciles de comparar</h2>
+      <p class="section-intro">
+        Nada de listas técnicas. Cada paquete dice qué recibís, para quién sirve y cómo se cobra.
+        Si no sabés cuál necesitás, lo definimos en una charla de 15 minutos.
+      </p>
+
+      <div class="grid grid-4" style="margin-top:24px">
+        <div class="card">
+          <h3>1. Presencia local</h3>
+          <p class="for">Ideal para: oficios, profesionales y comercios simples</p>
+          <ul>
+            <li>Landing con servicios</li>
+            <li>Mapa y horarios</li>
+            <li>Botón de WhatsApp y formulario</li>
+            <li>Dominio y configuración básica</li>
+          </ul>
+          <span class="pay">Implementación + mantenimiento opcional</span>
+        </div>
+        <div class="card">
+          <h3>2. Catálogo que consulta</h3>
+          <p class="for">Ideal para: repuestos, indumentaria, mueblerías, corralones, mayoristas</p>
+          <ul>
+            <li>Todo lo anterior</li>
+            <li>Productos o categorías con fotos</li>
+            <li>Filtros simples</li>
+            <li>Consultas que llegan por WhatsApp</li>
+          </ul>
+          <span class="pay">Implementación mayor + carga inicial limitada</span>
+        </div>
+        <div class="card">
+          <h3>3. Turnos o reservas</h3>
+          <p class="for">Ideal para: salud, estética, gimnasios, salones, gastronomía</p>
+          <ul>
+            <li>Todo lo anterior</li>
+            <li>Llamados a la acción claros</li>
+            <li>Turnos/reservas o integración de agenda</li>
+            <li>Recordatorios y confirmaciones</li>
+          </ul>
+          <span class="pay">Implementación + mensual</span>
+        </div>
+        <div class="card">
+          <h3>4. Tienda online</h3>
+          <p class="for">Ideal para: venta repetible con logística definida</p>
+          <ul>
+            <li>Catálogo y carrito</li>
+            <li>Pagos y envíos</li>
+            <li>Stock básico</li>
+            <li>Capacitación para que la manejes</li>
+          </ul>
+          <span class="pay">Proyecto por etapas + soporte mensual</span>
+        </div>
+      </div>
+
+      <div class="grid grid-2" style="margin-top:24px">
+        <div class="card">
+          <h3>Está incluido</h3>
+          <ul class="checklist">
+            <li>Secciones acordadas por escrito (qué se entrega)</li>
+            <li>Dos rondas de cambios</li>
+            <li>Fecha de entrega estimada al recibir tu material</li>
+            <li>Dominio y hosting a tu nombre, no a los míos</li>
+            <li>Publicación y verificación en Google</li>
+            <li>Soporte inicial y plan de mantenimiento opcional</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>No está incluido</h3>
+          <ul class="checklist no">
+            <li>Fotografía profesional</li>
+            <li>Pauta publicitaria (Google/Meta Ads)</li>
+            <li>Carga ilimitada de productos</li>
+            <li>Redacción extensa de contenidos</li>
+            <li>Integraciones especiales (ERP, facturación, etc.)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="proceso">
+      <p class="section-tag">Cómo trabajo</p>
+      <h2>Primero entiendo tu negocio, después programo</h2>
+      <p class="section-intro">
+        No envío presupuestos a ciegas. En una reunión de 15 minutos pregunto, muestro el
+        problema concreto y recién ahí propongo alcance, precio y fecha.
+      </p>
+      <ol class="steps">
+        <li>
+          <h3>Diagnóstico</h3>
+          <p>¿De dónde vienen las consultas? ¿Qué dudas se repiten? ¿Cuánto tarda alguien en responder el WhatsApp?</p>
+        </li>
+        <li>
+          <h3>Muestro el problema</h3>
+          <p>Una captura de tu ficha de Google o tu perfil actual, y la pérdida concreta que implica.</p>
+        </li>
+        <li>
+          <h3>Propuesta cerrada</h3>
+          <p>Paquete, secciones, contenido que aportás vos, fecha de publicación y precio. Por escrito.</p>
+        </li>
+        <li>
+          <h3>Demo antes de empezar</h3>
+          <p>Ves una maqueta real en el celular, no una lista de funcionalidades.</p>
+        </li>
+        <li>
+          <h3>Desarrollo y publicación</h3>
+          <p>Trabajo con tu material; cuando aprobás, se publica y queda indexada en Google.</p>
+        </li>
+        <li>
+          <h3>Acompañamiento</h3>
+          <p>Cambios de horarios, promociones, copias de seguridad y soporte mensual si lo querés.</p>
+        </li>
+      </ol>
+    </section>
+
+    <section id="demos">
+      <p class="section-tag">Demos por rubro</p>
+      <h2>Antes de contratar, mirá cómo quedaría</h2>
+      <p class="section-intro">
+        Preparo ejemplos por rubro para que veas el resultado en tu propio celular.
+        Son demostraciones: la versión de tu negocio se arma con tus servicios, tus fotos y tus datos.
+      </p>
+      <div class="grid grid-2" style="margin-top:24px">
+        <div class="demo">
+          <span class="label">Demo · Presencia local</span>
+          <h3>Panadería El Maná</h3>
+          <p>Horarios, ubicación en mapa, productos del día y contacto directo: el paquete “Presencia local” funcionando.</p>
+          <a class="btn btn-outline" href="https://townshop-one.vercel.app/landing2/" target="_blank" rel="noopener">Ver demo en vivo</a>
+        </div>
+        <div class="demo">
+          <span class="label">Demo · Catálogo que consulta</span>
+          <h3>Almacén Doña Rosa</h3>
+          <p>Categorías, fotos y precios con consulta por WhatsApp: el paquete “Catálogo que consulta” funcionando.</p>
+          <a class="btn btn-outline" href="https://townshop-one.vercel.app/landing-demos/landing-1/" target="_blank" rel="noopener">Ver demo en vivo</a>
+        </div>
+        <div class="demo">
+          <span class="label">Demo · Tienda online</span>
+          <h3>Almacén Doña Rosa · Tienda</h3>
+          <p>Carrito, precios y compra online paso a paso: el paquete “Tienda online” funcionando.</p>
+          <a class="btn btn-outline" href="https://townshop-one.vercel.app/landing-demos/landing-3/" target="_blank" rel="noopener">Ver demo en vivo</a>
+        </div>
+        <div class="demo">
+          <span class="label">Antes / después</span>
+          <h3>Tu ficha de Google hoy</h3>
+          <p>Mandame el link de tu negocio y te devuelvo un diagnóstico corto: qué falta, qué conviene y cómo quedaría.</p>
+          <a class="btn btn-outline" href="https://wa.me/5491161079845?text=Hola%2C%20te%20mando%20el%20link%20de%20mi%20negocio%20para%20el%20diagn%C3%B3stico" target="_blank" rel="noopener">Pedir diagnóstico</a>
+        </div>
+      </div>
+      <p style="margin-top:20px;font-size:.92rem;color:var(--muted)">
+        Son demos conceptuales de otros rubros (petshop, gourmet, mercado de barrio) publicadas en
+        <a href="https://townshop-one.vercel.app/" target="_blank" rel="noopener">townshop-one.vercel.app</a>
+        para que veas el funcionamiento real antes de empezar.
+      </p>
+    </section>
+
+    <section id="faq">
+      <p class="section-tag">Preguntas frecuentes</p>
+      <h2>Lo que suelen preguntar los comercios</h2>
+
+      <details>
+        <summary>¿Cuánto tarda y cómo se paga?</summary>
+        <p>Depende del paquete y de cuándo reciba tu material (logo, fotos, lista de servicios). La forma de pago habitual es un adelanto para iniciar y el saldo al aprobar, antes de publicar.</p>
+      </details>
+      <details>
+        <summary>¿El dominio y el hosting son míos?</summary>
+        <p>Sí. Todo queda a tu nombre y con tus accesos. Si algún día dejás de trabajar conmigo, te llevás el sitio completo.</p>
+      </details>
+      <details>
+        <summary>¿Tengo que escribir los textos?</summary>
+        <p>Vos aportás la información real (servicios, precios, horarios) y yo la ordeno en textos claros y cortos, pensados para que se entienda en el celular.</p>
+      </details>
+      <details>
+        <summary>¿Me garantizás aparecer primero en Google?</summary>
+        <p>No prometo posiciones garantizadas: nadie serio puede. Lo que sí hago es que tu sitio esté bien construido, indexado y vinculado a tu ficha de Google, que es la base para que te encuentren en la zona.</p>
+      </details>
+      <details>
+        <summary>¿Qué pasa después de publicar?</summary>
+        <p>Podés contratar un plan mensual: cambios de horarios y promociones, actualizaciones de catálogo, copias de seguridad, monitoreo y soporte por WhatsApp.</p>
+      </details>
+      <details>
+        <summary>¿Trabajás solo en Burzaco?</summary>
+        <p>Estoy en Burzaco y trabajo con comercios de toda la Zona Sur (Adrogué, Banfield, Lomas y alrededores). La atención es presencial al inicio y el resto por WhatsApp.</p>
+      </details>
     </section>
 
     <section id="contacto">
-      <h2>Contacto</h2>
-      <p>Escribime por WhatsApp o email para consultar por tu proyecto.</p>
-      <a class="boton" href="https://wa.me/5491161079845">WhatsApp</a>
+      <div class="contact-grid">
+        <div>
+          <p class="section-tag" style="color:#93c5fd">Contacto</p>
+          <h2>Charlemos 15 minutos</h2>
+          <p>
+            Contame a qué te dedicás y qué te gustaría que la web resuelva.
+            Si tiene sentido, te devuelvo una idea de cómo quedaría, sin compromiso.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://wa.me/5491161079845?text=Hola%20Germ%C3%A1n%2C%20vi%20tu%20sitio%20y%20quiero%20consultar%20por%20una%20web%20para%20mi%20negocio" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+            <a class="btn btn-outline" href="mailto:germyc@gmail.com?subject=Consulta%20por%20web%20para%20mi%20negocio">germyc@gmail.com</a>
+          </div>
+          <p class="note" style="margin-top:20px">
+            Respondé o escribí de lunes a sábado. Si estás en el barrio, también puedo pasar por el local en un horario tranquilo.
+          </p>
+        </div>
+        <div class="card" style="background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.15);color:#fff">
+          <h3>Para que la primera charla sirva</h3>
+          <ul class="checklist" style="color:#dbeafe">
+            <li>El link de tu ficha de Google o tu Instagram</li>
+            <li>Tu logo y algunas fotos del negocio</li>
+            <li>La lista de servicios o productos principales</li>
+            <li>Qué te gustaría que te llegue más: consultas, turnos o ventas</li>
+          </ul>
+        </div>
+      </div>
     </section>
   </main>
 
   <footer>
-    © 2026 — Todos los derechos reservados
+    © 2026 Germy Services — Germán Cortez · Desarrollo de software en Burzaco, Zona Sur.
+    <br />
+    <a href="https://wa.me/5491161079845" target="_blank" rel="noopener">WhatsApp</a> ·
+    <a href="mailto:germyc@gmail.com">Email</a>
   </footer>
 </body>
 </html>
